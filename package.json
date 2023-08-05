@@ -20,12 +20,14 @@
   },
   "homepage": "https://github.com/vanderL/check-in-app#readme",
   "devDependencies": {
-    "@types/node": "^20.4.8",
-    "tsup": "^7.2.0",
-    "tsx": "^3.12.7",
-    "typescript": "^5.1.6"
+    "@types/node": "18.14.0",
+    "tsup": "6.6.3",
+    "tsx": "3.12.3",
+    "typescript": "4.9.5"
   },
   "dependencies": {
-    "fastify": "^4.21.0"
+    "dotenv": "16.3.1",
+    "fastify": "4.13.0",
+    "zod": "3.21.4"
   }
 }
