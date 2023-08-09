@@ -1,15 +1,20 @@
-import { describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 
 import { FakeUsersRepository } from '@/repositories/fakes/fake-users-repository'
 import { AuthenticateService } from './authenticateService'
 import { hash } from 'bcryptjs'
 import { InvalidCredentialsError } from './errors/invalid-credentials-error'
 
-describe('Authenticate Service', () => {
-  it('should be able to authenticate', async () => {
-    const usersRepository = new FakeUsersRepository()
-    const sut = new AuthenticateService(usersRepository)
+let usersRepository: FakeUsersRepository
+let sut: AuthenticateService
 
+describe('Authenticate Service', () => {
+  beforeEach(() => {
+    usersRepository = new FakeUsersRepository()
+    sut = new AuthenticateService(usersRepository)
+  })
+
+  it('should be able to authenticate', async () => {
     await usersRepository.create({
       name: 'Fulano de tal',
       email: 'fulano@email.com',
@@ -25,9 +30,6 @@ describe('Authenticate Service', () => {
   })
 
   it('should not be able to authenticate with wrong email', async () => {
-    const usersRepository = new FakeUsersRepository()
-    const sut = new AuthenticateService(usersRepository)
-
     await expect(() =>
       sut.execute({
         email: 'fulano@email.com',
@@ -37,9 +39,6 @@ describe('Authenticate Service', () => {
   })
 
   it('should not be able to authenticate with wrong password', async () => {
-    const usersRepository = new FakeUsersRepository()
-    const sut = new AuthenticateService(usersRepository)
-
     await usersRepository.create({
       name: 'Fulano de tal',
       email: 'fulano@email.com',
