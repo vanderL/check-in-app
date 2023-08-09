@@ -1,7 +1,10 @@
 import { Prisma, User } from '@prisma/client'
 import { UsersRepository } from '../users-repository'
+import { randomUUID } from 'node:crypto'
 
 export class FakeUsersRepository implements UsersRepository {
+  public items: User[] = []
+
   async findById(userId: string) {
     const user = this.items.find((item) => item.id === userId)
 
@@ -11,8 +14,6 @@ export class FakeUsersRepository implements UsersRepository {
 
     return user
   }
-
-  public items: User[] = []
 
   async findByEmail(email: string) {
     const user = this.items.find((item) => item.email === email)
@@ -26,7 +27,7 @@ export class FakeUsersRepository implements UsersRepository {
 
   async create(data: Prisma.UserCreateInput) {
     const user = {
-      id: 'user-1',
+      id: randomUUID(),
       name: data.name,
       email: data.email,
       password_hash: data.password_hash,
