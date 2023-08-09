@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 
 import { FakeUsersRepository } from '@/repositories/fakes/fake-users-repository'
-import { AuthenticateService } from './authenticateService'
+import { AuthenticateService } from './authenticate'
 import { hash } from 'bcryptjs'
 import { InvalidCredentialsError } from './errors/invalid-credentials-error'
 
