@@ -40,8 +40,6 @@ describe('Search Gyms Service', () => {
   it('should be able to fetch paginated search gym', async () => {
     for (let i = 1; i <= 44; i++) {
       if (i % 2 === 0) {
-        console.log('par')
-
         await gymsRepository.create({
           title: `JavaScript Gym ${i}`,
           description: '',
@@ -50,8 +48,6 @@ describe('Search Gyms Service', () => {
           phone: '85981214026',
         })
       } else {
-        console.log('impar')
-
         await gymsRepository.create({
           title: `TypeScript Gym ${i}`,
           description: '',
